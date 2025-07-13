@@ -160,12 +160,7 @@ def candlestick(dataframe, num_period):
         decreasing_line_color='#ef4444',
         increasing_fillcolor='rgba(16, 185, 129, 0.3)',
         decreasing_fillcolor='rgba(239, 68, 68, 0.3)',
-        hovertemplate='<b>OHLC Data</b><br>' +
-                     'Date: %{x}<br>' +
-                     'Open: $%{open:.2f}<br>' +
-                     'High: $%{high:.2f}<br>' +
-                     'Low: $%{low:.2f}<br>' +
-                     'Close: $%{close:.2f}<extra></extra>'
+        name='OHLC'
     ))
     
     fig.update_xaxes(

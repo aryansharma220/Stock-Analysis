@@ -9,9 +9,20 @@ import pandas_ta as pta
 # function to plot interactive plotly chart
 def interactive_plot(df):
   fig = px.line()
-  for i in df.columns[1:]:
-    fig.add_scatter(x = df['Date'], y = df[i], name =i)
-  fig.update_layout(width=450, margin = dict(l=20,r=20,b=20,t=50), legend= dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1))
+  colors = ['#667eea', '#764ba2', '#f093fb', '#f5576c', '#4facfe', '#00f2fe']
+  for i, col in enumerate(df.columns[1:]):
+    color = colors[i % len(colors)]
+    fig.add_scatter(x = df['Date'], y = df[col], name =col, line=dict(color=color, width=3))
+  fig.update_layout(
+    width=450, 
+    height=400,
+    margin = dict(l=20,r=20,b=20,t=50), 
+    legend= dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+    plot_bgcolor='rgba(0,0,0,0)',
+    paper_bgcolor='rgba(0,0,0,0)',
+    xaxis=dict(showgrid=True, gridwidth=1, gridcolor='rgba(128,128,128,0.2)'),
+    yaxis=dict(showgrid=True, gridwidth=1, gridcolor='rgba(128,128,128,0.2)')
+  )
   return fig
 
 
@@ -44,23 +55,33 @@ def calculate_beta(stocks_daily_return, stock):
 
 
 def plotly_table(df):
-  headerColor = 'grey'
+  headerColor = '#667eea'
   rowOddColor = '#f8fafd'
-  rowEvenColor = '#e1efff'
+  rowEvenColor = '#e8f2ff'
   fig = go.Figure(data=[go.Table(
       header=dict(
         values=["<b></b>"]+["<b>"+str(i)+"</b>" for i in df.columns],
-        line_color='#0078ff',
-        fill_color='#0078ff',
-        align='center', font=dict(color='white',size=15), height=35
+        line_color='#667eea',
+        fill_color='#667eea',
+        align='center', 
+        font=dict(color='white', size=16, family="Arial"), 
+        height=40
       ),
       cells=dict(
         values=[["<b>"+str(i)+"</b>" for i in df.index]]+[df[i] for i in df.columns],
         fill_color = [rowOddColor, rowEvenColor],
-        align = 'left', line_color=['white'], font=dict(color='black',size=15)
+        align = 'left', 
+        line_color=['white'], 
+        font=dict(color='#2d3748', size=14, family="Arial"),
+        height=35
       ))
   ])
-  fig.update_layout(height=400, margin=dict(l=0,r=0,t=0,b=0))
+  fig.update_layout(
+    height=400, 
+    margin=dict(l=0,r=0,t=10,b=0),
+    paper_bgcolor='rgba(0,0,0,0)',
+    plot_bgcolor='rgba(0,0,0,0)'
+  )
   return fig
 
 
@@ -89,19 +110,24 @@ def close_chart(dataframe, num_period=False):
     
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=dataframe['Date'], y=dataframe['Open'],
-                            mode='lines', name='Open', line=dict(width=2, color='#5ab7ff')))
+                            mode='lines', name='Open', line=dict(width=2, color='#667eea')))
     fig.add_trace(go.Scatter(x=dataframe['Date'], y=dataframe['Close'],
-                            mode='lines', name='Close', line=dict(width=2, color='black')))
+                            mode='lines', name='Close', line=dict(width=3, color='#2d3748')))
     fig.add_trace(go.Scatter(x=dataframe['Date'], y=dataframe['High'],
-                            mode='lines', name='High', line=dict(width=2, color='#0078ff')))
+                            mode='lines', name='High', line=dict(width=2, color='#38a169')))
     fig.add_trace(go.Scatter(x=dataframe['Date'], y=dataframe['Low'],
-                            mode='lines', name='Low', line=dict(width=2, color='red')))
+                            mode='lines', name='Low', line=dict(width=2, color='#e53e3e')))
     
     fig.update_xaxes(rangeslider_visible=True)
-    fig.update_layout(height=500, margin=dict(l=0, r=20, t=20, b=0), plot_bgcolor='white', paper_bgcolor='#e1efff', legend=dict(
-        yanchor="top",
-        xanchor="right"
-    ))
+    fig.update_layout(
+        height=500, 
+        margin=dict(l=0, r=20, t=20, b=0), 
+        plot_bgcolor='rgba(0,0,0,0)', 
+        paper_bgcolor='rgba(0,0,0,0)', 
+        legend=dict(yanchor="top", xanchor="right"),
+        xaxis=dict(showgrid=True, gridwidth=1, gridcolor='rgba(128,128,128,0.2)'),
+        yaxis=dict(showgrid=True, gridwidth=1, gridcolor='rgba(128,128,128,0.2)')
+    )
     
     return fig
   
@@ -109,11 +135,25 @@ def close_chart(dataframe, num_period=False):
 def candlestick(dataframe, num_period):
     dataframe = filter_data(dataframe, num_period)
     fig = go.Figure()
-    fig.add_trace(go.Candlestick(x=dataframe['Date'],
-                                open=dataframe['Open'], high=dataframe['High'],
-                                low=dataframe['Low'], close=dataframe['Close']))
+    fig.add_trace(go.Candlestick(
+        x=dataframe['Date'],
+        open=dataframe['Open'], 
+        high=dataframe['High'],
+        low=dataframe['Low'], 
+        close=dataframe['Close'],
+        increasing_line_color='#38a169',
+        decreasing_line_color='#e53e3e'
+    ))
     
-    fig.update_layout(showlegend=False, height=500, margin=dict(l=0, r=20, t=20, b=0), plot_bgcolor='white', paper_bgcolor='#e1efff')
+    fig.update_layout(
+        showlegend=False, 
+        height=500, 
+        margin=dict(l=0, r=20, t=20, b=0), 
+        plot_bgcolor='rgba(0,0,0,0)', 
+        paper_bgcolor='rgba(0,0,0,0)',
+        xaxis=dict(showgrid=True, gridwidth=1, gridcolor='rgba(128,128,128,0.2)'),
+        yaxis=dict(showgrid=True, gridwidth=1, gridcolor='rgba(128,128,128,0.2)')
+    )
     return fig
   
 

@@ -12,240 +12,59 @@ st.set_page_config(
   initial_sidebar_state="auto",
 )
 
-# Custom CSS for CAPM page with dark mode support
+# Custom CSS for CAPM page
 st.markdown("""
 <style>
-    /* CSS Variables for theme adaptation */
-    :root {
-        --capm-blue: #667eea;
-        --capm-purple: #764ba2;
-        --success-green: #28a745;
-        --warning-yellow: #ffc107;
-        --danger-red: #dc3545;
-        --info-blue: #17a2b8;
-        --card-bg-light: rgba(255, 255, 255, 0.95);
-        --card-bg-dark: rgba(40, 44, 52, 0.95);
-        --text-primary-light: #2d3748;
-        --text-primary-dark: #e2e8f0;
-        --text-secondary-light: #666;
-        --text-secondary-dark: #a0aec0;
-        --border-light: rgba(0, 0, 0, 0.1);
-        --border-dark: rgba(255, 255, 255, 0.1);
-        --shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
-        --shadow-dark: 0 2px 4px rgba(0, 0, 0, 0.3);
-        --input-bg-light: rgba(248, 249, 250, 0.8);
-        --input-bg-dark: rgba(45, 55, 72, 0.8);
-        --formula-bg-light: rgba(232, 245, 232, 0.8);
-        --formula-bg-dark: rgba(40, 167, 69, 0.1);
-        --results-bg-light: rgba(255, 248, 225, 0.8);
-        --results-bg-dark: rgba(255, 193, 7, 0.1);
-    }
-    
-    @media (prefers-color-scheme: dark) {
-        :root {
-            --card-bg: var(--card-bg-dark);
-            --text-primary: var(--text-primary-dark);
-            --text-secondary: var(--text-secondary-dark);
-            --border: var(--border-dark);
-            --shadow: var(--shadow-dark);
-            --input-bg: var(--input-bg-dark);
-            --formula-bg: var(--formula-bg-dark);
-            --results-bg: var(--results-bg-dark);
-        }
-    }
-    
-    @media (prefers-color-scheme: light) {
-        :root {
-            --card-bg: var(--card-bg-light);
-            --text-primary: var(--text-primary-light);
-            --text-secondary: var(--text-secondary-light);
-            --border: var(--border-light);
-            --shadow: var(--shadow-light);
-            --input-bg: var(--input-bg-light);
-            --formula-bg: var(--formula-bg-light);
-            --results-bg: var(--results-bg-light);
-        }
-    }
-    
-    .stApp[data-theme="dark"] {
-        --card-bg: var(--card-bg-dark);
-        --text-primary: var(--text-primary-dark);
-        --text-secondary: var(--text-secondary-dark);
-        --border: var(--border-dark);
-        --shadow: var(--shadow-dark);
-        --input-bg: var(--input-bg-dark);
-        --formula-bg: var(--formula-bg-dark);
-        --results-bg: var(--results-bg-dark);
-    }
-    
-    .stApp[data-theme="light"] {
-        --card-bg: var(--card-bg-light);
-        --text-primary: var(--text-primary-light);
-        --text-secondary: var(--text-secondary-light);
-        --border: var(--border-light);
-        --shadow: var(--shadow-light);
-        --input-bg: var(--input-bg-light);
-        --formula-bg: var(--formula-bg-light);
-        --results-bg: var(--results-bg-light);
-    }
-    
     .capm-header {
-        background: linear-gradient(135deg, var(--capm-blue) 0%, var(--camp-purple) 100%);
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         padding: 2.5rem;
-        border-radius: 20px;
+        border-radius: 15px;
         text-align: center;
         color: white;
         margin-bottom: 2rem;
-        box-shadow: 0 12px 24px rgba(102, 126, 234, 0.3);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
     
     .input-section {
-        background: var(--input-bg);
-        backdrop-filter: blur(15px);
+        background: linear-gradient(145deg, #f8f9fa, #e9ecef);
         padding: 1.5rem;
-        border-radius: 15px;
+        border-radius: 12px;
         margin-bottom: 1.5rem;
-        border: 1px solid var(--border);
-        box-shadow: var(--shadow);
+        border: 1px solid #dee2e6;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
     }
     
-    .camp-formula {
-        background: var(--formula-bg);
-        backdrop-filter: blur(10px);
+    .capm-formula {
+        background: linear-gradient(135deg, #e8f5e8, #d4edda);
         padding: 1.5rem;
-        border-radius: 15px;
-        border-left: 5px solid var(--success-green);
+        border-radius: 10px;
+        border-left: 5px solid #28a745;
         margin: 1rem 0;
         text-align: center;
-        border: 1px solid var(--border);
-        box-shadow: var(--shadow);
     }
     
     .beta-explanation {
-        background: var(--card-bg);
-        backdrop-filter: blur(10px);
-        padding: 1.5rem;
-        border-radius: 12px;
-        border-left: 4px solid var(--info-blue);
+        background: #f8f9fa;
+        padding: 1rem;
+        border-radius: 8px;
+        border-left: 4px solid #17a2b8;
         margin: 1rem 0;
-        border: 1px solid var(--border);
-        box-shadow: var(--shadow);
     }
     
     .data-container {
-        background: var(--card-bg);
-        backdrop-filter: blur(10px);
+        background: white;
         padding: 1.5rem;
-        border-radius: 15px;
-        box-shadow: var(--shadow);
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         margin: 1rem 0;
-        border: 1px solid var(--border);
     }
     
     .results-section {
-        background: var(--results-bg);
-        backdrop-filter: blur(10px);
+        background: linear-gradient(145deg, #fff8e1, #ffecb3);
         padding: 1.5rem;
-        border-radius: 15px;
-        border-top: 4px solid var(--warning-yellow);
-        margin: 1rem 0;
-        border: 1px solid var(--border);
-        box-shadow: var(--shadow);
-    }
-    
-    .beta-card {
-        background: var(--card-bg);
-        backdrop-filter: blur(10px);
-        padding: 1rem;
-        margin: 0.5rem 0;
         border-radius: 10px;
-        border: 1px solid var(--border);
-        box-shadow: var(--shadow);
-        transition: all 0.3s ease;
-    }
-    
-    .beta-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(102, 126, 234, 0.15);
-    }
-    
-    .insight-card {
-        padding: 1.5rem;
-        border-radius: 12px;
-        text-align: center;
-        transition: all 0.3s ease;
-        border: 1px solid var(--border);
-        box-shadow: var(--shadow);
-        backdrop-filter: blur(10px);
-    }
-    
-    .insight-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-    }
-    
-    .insight-volatility {
-        background: rgba(255, 243, 205, 0.9);
-        border-left: 4px solid var(--warning-yellow);
-    }
-    
-    .insight-return {
-        background: rgba(212, 237, 218, 0.9);
-        border-left: 4px solid var(--success-green);
-    }
-    
-    .insight-stability {
-        background: rgba(209, 236, 241, 0.9);
-        border-left: 4px solid var(--info-blue);
-    }
-    
-    .risk-disclaimer {
-        background: rgba(248, 215, 218, 0.9);
-        padding: 1.5rem;
-        border-radius: 12px;
-        border-left: 4px solid var(--danger-red);
-        margin-top: 2rem;
-        border: 1px solid var(--border);
-    }
-    
-    .formula-title {
-        color: var(--success-green);
-        font-weight: bold;
-        margin-bottom: 1rem;
-    }
-    
-    .formula-equation {
-        color: var(--success-green);
-        font-size: 1.5em;
-        font-weight: bold;
+        border-top: 4px solid #ffc107;
         margin: 1rem 0;
-    }
-    
-    .formula-description {
-        color: var(--text-primary);
-        font-size: 0.9em;
-    }
-    
-    .period-info {
-        background: rgba(227, 242, 253, 0.9);
-        border-radius: 12px;
-        padding: 1rem;
-        margin-top: 1rem;
-        text-align: center;
-        border: 1px solid var(--border);
-    }
-    
-    .period-title {
-        color: var(--info-blue);
-        font-weight: 600;
-        margin-bottom: 0.5rem;
-    }
-    
-    .period-value {
-        color: var(--info-blue);
-        font-size: 1.2em;
-        font-weight: bold;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -262,9 +81,9 @@ st.markdown("""
 # CAPM Formula explanation
 st.markdown("""
 <div class="capm-formula">
-    <h3 class="formula-title">📈 CAPM Formula</h3>
-    <h2 class="formula-equation">E(R) = Rf + β(E(Rm) - Rf)</h2>
-    <p class="formula-description"><strong>E(R)</strong> = Expected Return | <strong>Rf</strong> = Risk-free Rate | <strong>β</strong> = Beta | <strong>E(Rm)</strong> = Expected Market Return</p>
+    <h3>📈 CAPM Formula</h3>
+    <h2 style="color: #28a745;">E(R) = Rf + β(E(Rm) - Rf)</h2>
+    <p><strong>E(R)</strong> = Expected Return | <strong>Rf</strong> = Risk-free Rate | <strong>β</strong> = Beta | <strong>E(Rm)</strong> = Expected Market Return</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -294,9 +113,9 @@ with col2:
     
     # Display selected period info
     st.markdown(f"""
-    <div class="period-info">
-        <h4 class="period-title">📅 Analysis Period</h4>
-        <h3 class="period-value">{years} Year{'s' if years > 1 else ''}</h3>
+    <div style="text-align: center; padding: 1rem; background: #e3f2fd; border-radius: 8px; margin-top: 1rem;">
+        <h4 style="color: #1976d2;">📅 Analysis Period</h4>
+        <h3 style="color: #1976d2;">{years} Year{'s' if years > 1 else ''}</h3>
     </div>
     """, unsafe_allow_html=True)
 
@@ -466,7 +285,7 @@ with insights_col1:
     highest_beta_stock = max(beta, key=beta.get)
     highest_beta_value = beta[highest_beta_stock]
     st.markdown(f"""
-    <div class="insight-card insight-volatility">
+    <div style="background: #fff3cd; padding: 1rem; border-radius: 8px; text-align: center;">
         <h4>⚡ Highest Beta</h4>
         <h3>{highest_beta_stock}</h3>
         <p>β = {highest_beta_value:.2f}</p>
@@ -479,7 +298,7 @@ with insights_col2:
     highest_return_stock = return_df.iloc[highest_return_idx]['Stock']
     highest_return_value = return_df.iloc[highest_return_idx]['Return Value']
     st.markdown(f"""
-    <div class="insight-card insight-return">
+    <div style="background: #d4edda; padding: 1rem; border-radius: 8px; text-align: center;">
         <h4>💰 Highest Expected Return</h4>
         <h3>{highest_return_stock}</h3>
         <p>{highest_return_value}%</p>
@@ -491,7 +310,7 @@ with insights_col3:
     lowest_beta_stock = min(beta, key=beta.get)
     lowest_beta_value = beta[lowest_beta_stock]
     st.markdown(f"""
-    <div class="insight-card insight-stability">
+    <div style="background: #d1ecf1; padding: 1rem; border-radius: 8px; text-align: center;">
         <h4>🛡️ Most Stable</h4>
         <h3>{lowest_beta_stock}</h3>
         <p>β = {lowest_beta_value:.2f}</p>
@@ -502,7 +321,7 @@ with insights_col3:
 # Risk warning
 st.markdown("---")
 st.markdown("""
-<div class="risk-disclaimer">
+<div style="background: #f8d7da; padding: 1rem; border-radius: 8px; border-left: 4px solid #dc3545;">
     <h4>⚠️ Risk Disclaimer</h4>
     <p>CAPM is a theoretical model and actual returns may vary significantly from predictions. 
     Beta calculations are based on historical data and may not reflect future volatility. 

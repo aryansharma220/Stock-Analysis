@@ -9,206 +9,61 @@ st.set_page_config(
     layout="wide",
 )
 
-# Custom CSS for Stock Prediction page with dark mode support
+# Custom CSS for Stock Prediction page
 st.markdown("""
 <style>
-    /* CSS Variables for theme adaptation */
-    :root {
-        --prediction-gradient-1: #ff9a9e;
-        --prediction-gradient-2: #fecfef;
-        --ai-blue: #667eea;
-        --ai-purple: #764ba2;
-        --success-green: #38a169;
-        --warning-orange: #ed8936;
-        --error-red: #e53e3e;
-        --card-bg-light: rgba(255, 255, 255, 0.95);
-        --card-bg-dark: rgba(40, 44, 52, 0.95);
-        --text-primary-light: #2d3748;
-        --text-primary-dark: #e2e8f0;
-        --text-secondary-light: #666;
-        --text-secondary-dark: #a0aec0;
-        --border-light: rgba(0, 0, 0, 0.1);
-        --border-dark: rgba(255, 255, 255, 0.1);
-        --shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
-        --shadow-dark: 0 2px 4px rgba(0, 0, 0, 0.3);
-        --input-bg-light: rgba(247, 250, 252, 0.8);
-        --input-bg-dark: rgba(45, 55, 72, 0.8);
-        --metrics-bg-light: rgba(230, 255, 250, 0.8);
-        --metrics-bg-dark: rgba(56, 178, 172, 0.1);
-    }
-    
-    @media (prefers-color-scheme: dark) {
-        :root {
-            --card-bg: var(--card-bg-dark);
-            --text-primary: var(--text-primary-dark);
-            --text-secondary: var(--text-secondary-dark);
-            --border: var(--border-dark);
-            --shadow: var(--shadow-dark);
-            --input-bg: var(--input-bg-dark);
-            --metrics-bg: var(--metrics-bg-dark);
-        }
-    }
-    
-    @media (prefers-color-scheme: light) {
-        :root {
-            --card-bg: var(--card-bg-light);
-            --text-primary: var(--text-primary-light);
-            --text-secondary: var(--text-secondary-light);
-            --border: var(--border-light);
-            --shadow: var(--shadow-light);
-            --input-bg: var(--input-bg-light);
-            --metrics-bg: var(--metrics-bg-light);
-        }
-    }
-    
-    .stApp[data-theme="dark"] {
-        --card-bg: var(--card-bg-dark);
-        --text-primary: var(--text-primary-dark);
-        --text-secondary: var(--text-secondary-dark);
-        --border: var(--border-dark);
-        --shadow: var(--shadow-dark);
-        --input-bg: var(--input-bg-dark);
-        --metrics-bg: var(--metrics-bg-dark);
-    }
-    
-    .stApp[data-theme="light"] {
-        --card-bg: var(--card-bg-light);
-        --text-primary: var(--text-primary-light);
-        --text-secondary: var(--text-secondary-light);
-        --border: var(--border-light);
-        --shadow: var(--shadow-light);
-        --input-bg: var(--input-bg-light);
-        --metrics-bg: var(--metrics-bg-light);
-    }
-    
     .prediction-header {
-        background: linear-gradient(135deg, var(--prediction-gradient-1) 0%, var(--prediction-gradient-2) 50%, var(--prediction-gradient-2) 100%);
-        padding: 2.5rem;
-        border-radius: 20px;
+        background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+        padding: 2rem;
+        border-radius: 15px;
         text-align: center;
-        color: var(--text-primary-light);
+        color: #2d3748;
         margin-bottom: 2rem;
-        box-shadow: 0 12px 24px rgba(255, 154, 158, 0.3);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     }
     
     .prediction-input {
-        background: var(--input-bg);
-        backdrop-filter: blur(15px);
+        background: linear-gradient(145deg, #f7fafc, #edf2f7);
         padding: 1.5rem;
-        border-radius: 15px;
+        border-radius: 12px;
         margin-bottom: 1.5rem;
-        border: 1px solid var(--border);
-        box-shadow: var(--shadow);
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     }
     
     .model-metrics {
-        background: var(--metrics-bg);
-        backdrop-filter: blur(10px);
+        background: linear-gradient(145deg, #e6fffa, #b2f5ea);
         padding: 1.5rem;
-        border-radius: 15px;
+        border-radius: 10px;
         margin: 1rem 0;
-        border-left: 5px solid var(--success-green);
-        border: 1px solid var(--border);
-        box-shadow: var(--shadow);
+        border-left: 5px solid #38b2ac;
     }
     
     .forecast-info {
-        background: var(--card-bg);
-        backdrop-filter: blur(10px);
+        background: white;
         padding: 1.5rem;
-        border-radius: 15px;
-        box-shadow: var(--shadow);
-        border-top: 4px solid var(--ai-blue);
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-top: 4px solid #667eea;
         margin: 1rem 0;
-        border: 1px solid var(--border);
     }
     
     .ai-badge {
-        background: linear-gradient(90deg, var(--ai-blue) 0%, var(--ai-purple) 100%);
+        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
         color: white;
-        padding: 0.75rem 1.5rem;
-        border-radius: 25px;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
         font-weight: bold;
         display: inline-block;
         margin: 0.5rem 0;
-        box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
     }
     
     .prediction-stats {
-        background: var(--card-bg);
-        backdrop-filter: blur(10px);
-        padding: 1.5rem;
-        border-radius: 12px;
-        border-left: 4px solid var(--success-green);
-        margin: 1rem 0;
-        border: 1px solid var(--border);
-        box-shadow: var(--shadow);
-    }
-    
-    .metric-container {
-        text-align: center;
+        background: #f8f9fa;
         padding: 1rem;
-        background: var(--card-bg);
-        border-radius: 12px;
-        margin: 0.5rem;
-        border: 1px solid var(--border);
-        box-shadow: var(--shadow);
-        transition: all 0.3s ease;
-    }
-    
-    .metric-container:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 16px rgba(102, 126, 234, 0.15);
-    }
-    
-    .metric-title {
-        color: var(--text-primary);
-        font-weight: 600;
-        margin-bottom: 0.5rem;
-    }
-    
-    .metric-value {
-        font-size: 1.8em;
-        font-weight: bold;
-        margin: 0.5rem 0;
-    }
-    
-    .metric-description {
-        color: var(--text-secondary);
-        font-size: 0.9em;
-    }
-    
-    .rmse-value {
-        color: var(--error-red);
-    }
-    
-    .accuracy-value {
-        color: var(--success-green);
-    }
-    
-    .order-value {
-        color: var(--ai-blue);
-    }
-    
-    .disclaimer-box {
-        background: rgba(255, 243, 205, 0.9);
-        padding: 1.5rem;
-        border-radius: 12px;
-        border-left: 4px solid var(--warning-orange);
-        margin-top: 2rem;
-        border: 1px solid var(--border);
-    }
-    
-    .disclaimer-title {
-        color: var(--warning-orange);
-        font-weight: bold;
-        margin-bottom: 0.5rem;
-    }
-    
-    .disclaimer-text {
-        color: var(--text-primary);
-        line-height: 1.6;
+        border-radius: 8px;
+        border-left: 4px solid #28a745;
+        margin: 1rem 0;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -276,29 +131,29 @@ metric_col1, metric_col2, metric_col3 = st.columns(3)
 
 with metric_col1:
     st.markdown(f"""
-    <div class="metric-container">
-        <h3 class="metric-title">🎯 RMSE Score</h3>
-        <h2 class="metric-value rmse-value">{rmse}</h2>
-        <p class="metric-description">Root Mean Square Error</p>
+    <div style="text-align: center;">
+        <h3>🎯 RMSE Score</h3>
+        <h2 style="color: #e53e3e;">{rmse}</h2>
+        <p>Root Mean Square Error</p>
     </div>
     """, unsafe_allow_html=True)
 
 with metric_col2:
     accuracy = max(0, min(100, (1 - rmse/100) * 100))
     st.markdown(f"""
-    <div class="metric-container">
-        <h3 class="metric-title">✅ Model Accuracy</h3>
-        <h2 class="metric-value accuracy-value">{accuracy:.1f}%</h2>
-        <p class="metric-description">Prediction Confidence</p>
+    <div style="text-align: center;">
+        <h3>✅ Model Accuracy</h3>
+        <h2 style="color: #38a169;">{accuracy:.1f}%</h2>
+        <p>Prediction Confidence</p>
     </div>
     """, unsafe_allow_html=True)
 
 with metric_col3:
     st.markdown(f"""
-    <div class="metric-container">
-        <h3 class="metric-title">🔢 Differencing Order</h3>
-        <h2 class="metric-value order-value">{differencing_order}</h2>
-        <p class="metric-description">Stationarity Level</p>
+    <div style="text-align: center;">
+        <h3>🔢 Differencing Order</h3>
+        <h2 style="color: #3182ce;">{differencing_order}</h2>
+        <p>Stationarity Level</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -413,9 +268,9 @@ with insights_col2:
 # Disclaimer
 st.markdown("---")
 st.markdown("""
-<div class="disclaimer-box">
-    <h4 class="disclaimer-title">⚠️ Investment Disclaimer</h4>
-    <p class="disclaimer-text">This prediction is for educational purposes only and should not be considered as financial advice. 
+<div style="background: #fff3cd; padding: 1rem; border-radius: 8px; border-left: 4px solid #ffc107;">
+    <h4>⚠️ Investment Disclaimer</h4>
+    <p>This prediction is for educational purposes only and should not be considered as financial advice. 
     Stock market predictions are inherently uncertain and actual results may vary significantly. 
     Always conduct your own research and consult with financial professionals before making investment decisions.</p>
 </div>

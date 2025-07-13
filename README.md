@@ -268,23 +268,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Statsmodels**: Statistical analysis tools
 - **Federal Reserve Economic Data (FRED)**: S&P 500 benchmark data
 
-## 📞 Support
-
-- **Issues**: [GitHub Issues](https://github.com/aryansharma220/Time_Series_Stocks/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/aryansharma220/Time_Series_Stocks/discussions)
-- **Email**: [Contact Developer](mailto:aryansharma220@example.com)
-
-## 🔮 Future Enhancements
-
-- [ ] Real-time portfolio tracking
-- [ ] Machine learning sentiment analysis
-- [ ] Options pricing models
-- [ ] Cryptocurrency analysis
-- [ ] Mobile-responsive design
-- [ ] API endpoint creation
-- [ ] Database integration
-- [ ] User authentication system
-
 ---
 
 <div align="center">
@@ -292,7 +275,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **⭐ Star this repository if you find it helpful!**
 
 [![GitHub followers](https://img.shields.io/github/followers/aryansharma220?style=social)](https://github.com/aryansharma220)
-[![Twitter Follow](https://img.shields.io/twitter/follow/aryansharma220?style=social)](https://twitter.com/aryansharma220)
 
 *Built with ❤️ for the financial analysis community*
 

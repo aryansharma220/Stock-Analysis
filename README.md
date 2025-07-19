@@ -238,27 +238,7 @@ streamlit run Trading_App.py --server.port 8502
 | MSFT  | 0.89 | 10.1%          | Low        |
 | GOOGL | 1.07 | 11.4%          | Moderate   |
 
-## 🤝 Contributing
-
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
-
-### Development Setup
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature-name`
-3. Make your changes and test thoroughly
-4. Submit a pull request with detailed description
-
-### Code Style
-
-- Follow PEP 8 guidelines
-- Add docstrings to all functions
-- Include type hints where appropriate
-- Write unit tests for new features
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+---
 
 ## 🙏 Acknowledgments
 
